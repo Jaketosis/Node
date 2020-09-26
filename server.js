@@ -6,10 +6,10 @@ var http = require('http'),
 
 
 
-    
+
 app.get('/',(req,res)=>{
 
-    res.send('html/geekhacked.html', { root: __dirname });
+    app.use(express.static("./statichtml/geekhacked.html",options));
 
 });
 
