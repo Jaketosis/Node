@@ -13,7 +13,7 @@ app.set('views', views_path);
 
 app.get('/',(req,res)=>{
 
-    fs.readFile('./statichtml/geekhacked.html', function(err, data) {
+    fs.readFile('statichtml/geekhacked.html', function(err, data) {
         if (err) {
           throw err;
         } else {
