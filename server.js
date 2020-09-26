@@ -6,10 +6,10 @@ var http = require('http'),
 
 
 
-
+app.use(express.static("./statichtml"));
 app.get('/',(req,res)=>{
 
-    app.use(express.static("./statichtml"));
+    //res.send(${});
 
 });
 
