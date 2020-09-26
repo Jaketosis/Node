@@ -1,6 +1,6 @@
 {
   "name": "project0",
-  "engines":{"node":"v12.18.4"},
+  "engines":{"node":"^12.18.3"},
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
