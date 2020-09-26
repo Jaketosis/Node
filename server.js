@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
 
+var http = require('http'),
+    fs = require('fs');
+
+
+
+    
 app.get('/',(req,res)=>{
 
-    res.send('welcome to the home page baby');
+    res.send('./geekhacked.html',{ root: __dirname });
 
 });
 
