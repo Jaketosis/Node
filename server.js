@@ -9,14 +9,14 @@ var http = require('http'),
     
 app.get('/',(req,res)=>{
 
-    res.send('./geekhacked.html');
+    res.send('./geekhacked.html', { root: __dirname });
 
 });
 
 const port = process.env.PORT || 8000;
 app.listen(port, ()=> {
 
-    console.log("Wazzapppp"); 
+    console.log("Wazzapppp", __dirname); 
 
 });
 
