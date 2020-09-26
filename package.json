@@ -1,5 +1,6 @@
 {
   "name": "project0",
+  "start":"node app.js",
   "engines":{"node":"12.18.3"},
   "version": "1.0.0",
   "description": "",
