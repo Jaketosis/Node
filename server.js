@@ -6,7 +6,7 @@ var http = require('http'),
 
 
 
-app.use(express.static("./statichtml"));
+app.use(express.static("statichtml"));
 app.get('/',(req,res)=>{
 
     //res.send(${});
