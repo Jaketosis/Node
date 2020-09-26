@@ -10,10 +10,13 @@ app.set('view engine', 'hbs');
 app.set('views', views_path);
 
 
-app.use(express.static(static_path));
+
 app.get('/',(req,res)=>{
 
-    //res.send(${});
+    res.render('geekhacked', {
+        title: 'Weather App',
+        name: 'ArunKumar Arjunan'
+        }
 
 });
 
