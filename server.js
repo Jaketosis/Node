@@ -9,7 +9,7 @@ var http = require('http'),
     
 app.get('/',(req,res)=>{
 
-    res.render('./geekhacked.html',{ root: __dirname });
+    res.send('./geekhacked.html');
 
 });
 
