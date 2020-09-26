@@ -9,7 +9,7 @@ var http = require('http'),
 
 app.get('/',(req,res)=>{
 
-    app.use(express.static("./statichtml/geekhacked.html",options));
+    app.use(express.static("./statichtml/geekhacked.html"));
 
 });
 
