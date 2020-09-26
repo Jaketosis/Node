@@ -13,10 +13,13 @@ app.set('views', views_path);
 
 app.get('/',(req,res)=>{
 
-    res.render('geekhacked', {
-        title: 'Weather App',
-        name: 'ArunKumar Arjunan'
+    fs.readFile('geekhacked.html', function(err, data) {
+        if (err) {
+          throw err;
+        } else {
+          // Successful file read
         }
+      });
 
 });
 
