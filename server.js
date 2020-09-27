@@ -25,7 +25,12 @@ var path = require('path');
 app.get('/',function (req,res){
     res.render('gallery')
 })
+const port = process.env.PORT || 8000;
+app.listen(port, ()=> {
 
+    console.log("Wazzapppp", __dirname); 
+
+});
 
 // app.get('/galleries',gallery.index);
 // app.post('/add_gallery',gallery.add_gallery);
@@ -55,10 +60,5 @@ app.get('/',function (req,res){
 
 // });
 
-// const port = process.env.PORT || 8000;
-// app.listen(port, ()=> {
 
-//     console.log("Wazzapppp", __dirname); 
-
-// });
 
