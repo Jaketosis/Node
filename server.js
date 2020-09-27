@@ -7,7 +7,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.set('port',process.env.PORT || 8000);
+//app.set('port',process.env.PORT || 8000);
 //onst port = process.env.PORT || 8000;
 
 var aws = require('aws-sdk');
