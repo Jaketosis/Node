@@ -1,5 +1,5 @@
 
-
+var path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -19,13 +19,13 @@ app.use(bodyParser.urlencoded({
     })
 );
 
-var path = require('path');
+
 // var gallery =require('./galleries/gallery');
 
 app.get('/',function (req,res){
     res.render('gallery')
 })
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 app.listen(port, ()=> {
 
     console.log("Wazzapppp", __dirname); 
