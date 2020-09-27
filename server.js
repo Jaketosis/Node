@@ -3,7 +3,7 @@ var path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-
+const db = require('./queries')
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -31,7 +31,7 @@ app.listen(port, ()=> {
     console.log("Wazzapppp", __dirname); 
 
 });
-
+app.get('/items', db.getItems)
 // app.get('/galleries',gallery.index);
 // app.post('/add_gallery',gallery.add_gallery);
 
