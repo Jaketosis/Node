@@ -4,8 +4,11 @@ var path = require('path');
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
+var uuid = require('uuid');
+const uuidv1 = require('uuid/v1');
 
-const { v4: uuidv4 } = require('uuid');
+console.log(uuid.v1());
+
 // const { database } = require('./database')
 
 
