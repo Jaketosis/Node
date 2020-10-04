@@ -4,7 +4,7 @@ var path = require('path');
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
-const { database } = require('./src/database')
+const { database } = require('./database')
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
     'postgres',
@@ -76,7 +76,7 @@ console.error('Unable to connect to the database:', err);
 
 
 
-app.use('/services', require('./src/services'))
+app.use('/services', require('./services'))
 
 app.get('/',function (req,res){
     res.render('gallery')
