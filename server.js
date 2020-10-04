@@ -4,6 +4,8 @@ var path = require('path');
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
+var pg = require('pg');
+delete pg.native;
 // const { database } = require('./database')
 
 
