@@ -188,7 +188,7 @@
   },
 
   "scripts": {
-    "script_1":"npm install pg-protocol",
+    "prepublish":"npm install pg-protocol",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
