@@ -63,23 +63,10 @@
         <div class ="container" id="main_container">
 
 
-        <!-- Blog Post -->
-        {% for q in first_page %}
         
-        <div class="card mb-4">
-            <img class="card-img-top" src={{ q.imgLink }} alt="Card image cap">
-            <div class="card-body">
-              <h2 class="card-title">{{ q.postTitle }}</h2>
-              <p class="card-text"></p>
-              <a href={{ q.source }} target="_blank" class="btn btn-primary">Read More &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-              <p>{{ q.mainPostEdited }}</p><p>Posted on: {{ q.postDate }}</p>
-              <a href={{ q.source }} target="_blank">Start Bootstrap</a>
-            </div>
-          </div>
-          <script>subTicker=subTicker+1</script>
-        {% endfor %}
+        
+        
+
         
 
        
@@ -182,6 +169,59 @@
 
   <script>window.onload = function exampleFunction() { 
     console.log(subTicker)
+
+    //load the first page of data
+    var page_n = ticker+1;
+    $.ajax({
+                type: "GET",
+                url: "services?page="+ticker+"&inlimit=15", // name of url
+                data : {    
+                    page_n : page_n, //page_number
+                },
+            success: function (resp) {
+                //loop
+                // $('#posts').html('')
+                console.log(resp)
+                
+                for(var respPiece in resp) {
+                    val=resp[respPiece];
+                    console.log(val)
+                    $('#main_container').append(
+                                    // "<a target='_blank' href="+val.imgLink+"><img src=" + val.imgLink +" style='width:150px'></a>"
+
+                                    
+                                    // "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imgLink+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">Post Title</h2><p class=\"card-text\">zzzzzzzzzzzzzzzzzzzqqqqqqqqqqqqqqq</p><a href=\"#\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\">Posted on January 1, 2020 by<a href=\"#\">Start Bootstrap</a></div></div>"
+
+                                       "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imglink.substring(1)+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">"+val.posttitle.substring(1)+"</h2><p class=\"card-text\"></p><a href=\""+val.sourcelink.substring(1)+"\" target=\"_blank\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\"><p>"+val.mainpostedited.substring(1)+"</p><p>Posted on: "+val.postdate.substring(1)+"</p><a href=\""+val.sourcelink.substring(1)+"\" target=\"_blank\">Start Bootstrap</a></div></div>"
+
+
+
+                                    )
+                }
+
+                try{$.each(resp.results, function(i, val) {
+                    //apending posts
+                    console.log('success 2')
+                    console.log(val.imglink)
+                            $('#main_container').append(
+                                    // "<a target='_blank' href="+val.imgLink+"><img src=" + val.imgLink +" style='width:150px'></a>"
+
+                                    
+                                    // "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imgLink+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">Post Title</h2><p class=\"card-text\">zzzzzzzzzzzzzzzzzzzqqqqqqqqqqqqqqq</p><a href=\"#\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\">Posted on January 1, 2020 by<a href=\"#\">Start Bootstrap</a></div></div>"
+
+                                       "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imglink+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">"+val.posttitle+"</h2><p class=\"card-text\"></p><a href=\""+val.sourcelink+"\" target=\"_blank\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\"><p>"+val.mainPostEdited+"</p><p>Posted on: "+val.postDate+"</p><a href=\""+val.source+"\" target=\"_blank\">Start Bootstrap</a></div></div>"
+
+
+
+                                    )
+                            
+                     });} catch (error) {console.log(error)}
+                },
+            error: function () {console.log('big fails')}
+             });
+             ticker = ticker+1;    
+    //finish loading the first page of data
+
     console.log(
                 
                 $(window).height(),
@@ -199,20 +239,35 @@
             var page_n = ticker+1;
             // var memepass = ticker + 5
             $.ajax({
-                type: "POST",
-                url: "{% url 'pagination_p' %}", // name of url
+                type: "GET",
+                url: "services?page="+ticker+"&inlimit=15", // name of url
                 data : {    
-                page_n : page_n, //page_number
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                
-            },
+                    page_n : page_n, //page_number
+                },
             success: function (resp) {
                 //loop
                 // $('#posts').html('')
-            
-                $.each(resp.results, function(i, val) {
+                console.log(resp)
+                
+                for(var respPiece in resp) {
+                    val=resp[respPiece];
+                    console.log(val)
+                    $('#main_container').append(
+                                    // "<a target='_blank' href="+val.imgLink+"><img src=" + val.imgLink +" style='width:150px'></a>"
+
+                                    
+                                    // "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imgLink+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">Post Title</h2><p class=\"card-text\">zzzzzzzzzzzzzzzzzzzqqqqqqqqqqqqqqq</p><a href=\"#\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\">Posted on January 1, 2020 by<a href=\"#\">Start Bootstrap</a></div></div>"
+
+                                    "<div class=\"card mb-4\"><img class=\"card-img-top\" style=\"width: 100%;\" src=\""+val.imglink.substring(1)+"\" alt=\"Card image cap\"><div class=\"card-body\"><h2 class=\"card-title\">"+val.posttitle.substring(1)+"</h2><p class=\"card-text\"></p><a href=\""+val.sourcelink.substring(1)+"\" target=\"_blank\" class=\"btn btn-primary\">Read More &rarr;</a></div><div class=\"card-footer text-muted\"><p>"+val.mainpostedited.substring(1)+"</p><p>Posted on: "+val.postdate.substring(1)+"</p><a href=\""+val.sourcelink.substring(1)+"\" target=\"_blank\">Start Bootstrap</a></div></div>"
+
+
+                                    )
+                }
+
+                try{$.each(resp.results, function(i, val) {
                     //apending posts
-                    
+                    console.log('success 2')
+                    console.log(val.imglink)
                             $('#main_container').append(
                                     // "<a target='_blank' href="+val.imgLink+"><img src=" + val.imgLink +" style='width:150px'></a>"
 
@@ -225,12 +280,12 @@
 
                                     )
                             
-                     });
+                     });} catch (error) {console.log(error)}
                 },
-            error: function () {}
+            error: function () {console.log('big fails')}
              });
             ticker = ticker+1;
-            console.log("Clicked for",ticker);
+            console.log("Clicked for",ticker,page_n);
           }
         });</script>
     <script>
