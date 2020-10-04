@@ -1,9 +1,27 @@
 
 var path = require('path');
 const express = require('express');
+const cors = require('cors')
 const bodyParser = require('body-parser');
+
+const Sequelize = require('sequelize')
+const sequelize = new Sequelize(
+    'postgres',
+    'jakemarsh',
+    'Sephiroth!1',
+    {
+      host:'database-2.c2xa1utqjm6r.us-east-2.rds.amazonaws.com',
+        dialect: 'postgres',
+    },
+);
+
+
 const app = express();
-const db = require('./queries')
+
+//old code, delete soon
+// const db = require('./queries')
+
+const { database } = require('./src/database')
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -18,20 +36,59 @@ app.use(bodyParser.urlencoded({
         extended: true
     })
 );
+function clientErrorHandler (err, req, res, next) {
+    if (req.xhr) {
+       res.status(500).send({ error: 'Something failed!' })
+     } else {
+       next(err)
+    }
+}
+
+app.use(clientErrorHandler);
 
 
-// var gallery =require('./galleries/gallery');
+sequelize
+
+.authenticate()
+
+.then(() => {
+
+console.log('Connection has been established successfully.');
+
+})
+
+.catch(err => {
+
+console.error('Unable to connect to the database:', err);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+app.use('/services', require('./src/services'))
 
 app.get('/',function (req,res){
     res.render('gallery')
 })
+
+
 const port = process.env.PORT || 8080;
-app.listen(port, ()=> {
-
-    console.log("Wazzapppp", __dirname); 
-
-});
-app.get('/items', db.getItems)
+database.sync().then(() => {
+    app.listen(port, () => {
+      console.log(`Listening on port ${port}`);
+      
+  
+    })
+  })
+// app.get('/items', db.getItems)
 // app.get('/galleries',gallery.index);
 // app.post('/add_gallery',gallery.add_gallery);
 
