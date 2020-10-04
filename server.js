@@ -1,9 +1,10 @@
 
+console.log('starting, checkpoint 0')
 var path = require('path');
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
-
+const { database } = require('./src/database')
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
     'postgres',
@@ -21,7 +22,7 @@ const app = express();
 //old code, delete soon
 // const db = require('./queries')
 
-const { database } = require('./src/database')
+
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -30,12 +31,14 @@ app.set('view engine', 'html');
 
 var aws = require('aws-sdk');
 
-app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-        extended: true
-    })
-);
+// app.use(express.static('public'));
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+)
+app.use(cors())
 function clientErrorHandler (err, req, res, next) {
     if (req.xhr) {
        res.status(500).send({ error: 'Something failed!' })
