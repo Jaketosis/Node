@@ -5,6 +5,10 @@ const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const { database } = require('./database')
+
+
+
+/*
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
     'postgres',
@@ -15,7 +19,33 @@ const sequelize = new Sequelize(
         dialect: 'postgres',
     },
 );
+*/
+const Sequelize = require('sequelize');
 
+const database = new Sequelize({
+
+    "username": "jakemarsh",
+    "password": "Sephiroth!1",
+    "database": "postgres",
+    "host": "database-2.c2xa1utqjm6r.us-east-2.rds.amazonaws.com",
+    "dialect": "postgres",
+    operatorsAliases: Sequelize.Op
+
+})
+const ghlinks = database.define('ghlinks',{
+    id: {type:Sequelize.STRING, primaryKey: true },
+    sourcelink: {type:Sequelize.STRING},
+    imglink: {type:Sequelize.STRING},
+    pictureindex: {type:Sequelize.INTEGER},
+
+})
+
+module.exports= {
+
+    ghlinks,
+    database
+
+}
 
 const app = express();
 
@@ -50,7 +80,7 @@ function clientErrorHandler (err, req, res, next) {
 app.use(clientErrorHandler);
 
 
-sequelize
+database
 
 .authenticate()
 
