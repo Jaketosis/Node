@@ -177,7 +177,7 @@
     "url-parse-lax": "^3.0.0",
     "util-deprecate": "^1.0.2",
     "utils-merge": "^1.0.1",
-    "uuid": "^8.3.0",
+    "uuid": "^8.3.1",
     "vary": "^1.1.2",
     "widest-line": "^3.1.0",
     "wrappy": "^1.0.2",
@@ -186,7 +186,7 @@
     "yarn": "^1.22.10"
   },
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
