@@ -106,7 +106,7 @@ console.error('Unable to connect to the database:', err);
 
 
 
-app.use('/services', require('./services'))
+// app.use('/services', require('./services'))
 
 app.get('/',function (req,res){
     res.render('gallery')
